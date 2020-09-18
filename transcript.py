@@ -49,10 +49,10 @@ fo_c.close()
 fo_list[0] = "WEBVTT\n"
 i = 3
 while i + 4 < len(fo_list):
-    fo_list[i] = fo_list[i].replace('\n', '') + ".500 --> " + fo_list[i + 4].replace('\n', '') + ".501\n"
+    fo_list[i] = fo_list[i].replace('\n', '') + ".500 --> " + fo_list[i + 4].replace('\n', '') + ".499\n"
     i = i + 4
 
-fo_list[i] = fo_list[i].replace('\n', '') + ".500 --> 01:30:00.520\n"
+fo_list[i] = fo_list[i].replace('\n', '') + ".500 --> 01:30:00.499\n"
 
 fo_c = open("formatted_transcript.transcript.vtt", "w+", encoding='utf-8')
 fo_c.writelines(fo_list)

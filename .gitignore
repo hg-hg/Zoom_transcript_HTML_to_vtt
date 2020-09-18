@@ -130,3 +130,7 @@ dmypy.json
 
 # IDEA
 .idea/
+
+# Script temp files
+transcript.txt
+formatted_transcript.transcript.vtt

@@ -1,6 +1,14 @@
 import re
 
 
+def GetMiddleStr(content, startStr, endStr):
+    patternStr = r'%s(.+?)%s' % (startStr, endStr)
+    p = re.compile(patternStr, re.IGNORECASE)
+    m = re.match(p, content)
+    if m:
+        return m.group(1)
+
+
 def filter_tags(htmlstr):
     re_cdata = re.compile('//<!\[CDATA\[[^>]*//\]\]>', re.I)  # 匹配CDATA
     re_script = re.compile('<\s*script[^>]*>[^<]*<\s*/\s*script\s*>', re.I)  # Script
@@ -31,11 +39,13 @@ try:
 finally:
     fi.close()
 
+data_str = GetMiddleStr(file_context, "<ul data", "aria-label")
+
 i = 1
-while file_context.find("<span data-v-4aeb73b8=\"\" class=\"time\">") != -1:
-    file_context = file_context.replace("<span data-v-4aeb73b8=\"\" class=\"time\">", str("\n\n" + str(i) + "\n"), 1)
+while file_context.find("<span data" + data_str + "class=\"time\">") != -1:
+    file_context = file_context.replace("<span data" + data_str + "class=\"time\">", str("\n\n" + str(i) + "\n"), 1)
     i = i + 1
-file_context = file_context.replace("<span data-v-4aeb73b8=\"\" class=\"text\">", "\n")
+file_context = file_context.replace("<span data" + data_str + "class=\"text\">", "\n")
 file_context = filter_tags(file_context)
 
 fo = open("formatted_transcript.transcript.vtt", "w+", encoding='utf-8')

@@ -2,6 +2,8 @@
 
 Convert Zoom transcript from HTML text to vtt format
 
+This is not to be used to download transcript of any Zoom videos that you do not have permission from the creator to download
+
 ## Usage
 
 1. Press ``F12`` in the Zoom video window, click ``Elements`` tab
